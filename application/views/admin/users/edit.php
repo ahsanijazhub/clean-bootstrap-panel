@@ -41,6 +41,7 @@
                                    placeholder="Enter phone number" value="<?= htmlspecialchars($user->phone ?? '') ?>">
                         </div>
 
+                        <?php if ($is_superadmin): ?>
                         <div class="form-group">
                             <label class="form-label">New Password</label>
                             <input type="password" name="password" class="form-control"
@@ -53,6 +54,7 @@
                             <input type="password" name="confirm_password" class="form-control"
                                    placeholder="Confirm new password">
                         </div>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>

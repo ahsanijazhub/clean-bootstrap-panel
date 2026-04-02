@@ -160,7 +160,8 @@ class Users extends CI_Controller {
             'title' => 'Edit User',
             'page_title' => 'Edit User',
             'user' => $user,
-            'roles' => $roles
+            'roles' => $roles,
+            'is_superadmin' => $this->auth_lib->is_superadmin()
         ];
 
         $this->load->view('admin/layouts/header', $data);
