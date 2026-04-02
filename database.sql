@@ -34,8 +34,8 @@ CREATE TABLE `admin_users` (
 
 -- Sample admin users (password: password123)
 INSERT INTO `admin_users` (`id`, `role_id`, `first_name`, `last_name`, `email`, `password`, `phone`, `is_superadmin`, `is_active`, `created_at`) VALUES
-(1, 1, 'Admin', 'User', 'admin@example.com', '$2y$10$uC8EQlzwnefMtN/t3amInOSPKOSZqPy.JwLaqMen/hOT9rpCdqAlS', NULL, 1, 1, NOW()),
-(2, 2, 'Manager', 'User', 'manager@example.com', '$2y$10$6adfKN99R7CU2BJXoBgM9e8ajtmVg/.QdSaQVGGjS/NedMfVkVd1e', '12345678', 0, 1, NOW());
+(1, 1, 'Admin', 'User', 'admin@example.com', '$2y$10$92IXUNpk9O360wrAOijKb0.LKfcI.Sa7Mz.dx5KpUg5J5Z3P5oSQW2', NULL, 1, 1, NOW()),
+(2, 2, 'Manager', 'User', 'manager@example.com', '$2y$10$92IXUNpk9O360wrAOijKb0.LKfcI.Sa7Mz.dx5KpUg5J5Z3P5oSQW2', '12345678', 0, 1, NOW());
 
 -- ============================================================
 -- Table: roles
