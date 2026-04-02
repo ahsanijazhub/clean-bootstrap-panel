@@ -1,4 +1,4 @@
-    <!-- Main Footer -->
+<!-- Main Footer -->
     <footer class="main-footer">
         <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
             <div>
@@ -10,6 +10,21 @@
         </div>
     </footer>
 </div><!-- /.content-wrapper -->
+
+<!-- OverlayScrollbars JS -->
+<script src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.0/browser/overlayscrollbars.browser.es6.min.js"></script>
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<!-- jQuery UI JS -->
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+
+<!-- Bootstrap JS (for Modals) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Custom JS -->
+<script src="<?= base_url('assets/js/custom.js?v=1.5') ?>"></script>
 
 <?php if ($this->session->flashdata('success')): ?>
 <script>
