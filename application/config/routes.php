@@ -71,3 +71,6 @@ $route['users/delete/(:num)'] = 'users/delete/$1';
 
 // Profile
 $route['profile'] = 'profile/index';
+
+// Settings
+$route['settings'] = 'settings/index';
