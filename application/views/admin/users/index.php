@@ -23,19 +23,7 @@
                         <?php endforeach; ?>
                     </select>
                 </div>
-                <?php if ($is_superadmin): ?>
-                    <div class="col-md-4">
-                        <select name="company_id" class="form-control">
-                            <option value="">All Companies</option>
-                            <?php foreach ($companies as $company): ?>
-                                <option value="<?= $company->id ?>" <?= ($filters['company_id'] ?? '') == $company->id ? 'selected' : '' ?>>
-                                    <?= htmlspecialchars($company->company_name) ?>
-                                </option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
-                <?php endif; ?>
-                <div class="col-md-<?= $is_superadmin ? '12' : '4' ?> mt-2">
+                <div class="col-md-4 mt-2">
                     <button type="submit" class="btn btn-primary">Filter</button>
                     <a href="<?= site_url('users') ?>" class="btn btn-secondary">Clear</a>
                 </div>
@@ -47,7 +35,7 @@
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">All Users (<?= $total_users ?>)</h3>
-            <?php if ($this->auth_lib->has_permission('users.create')): ?>
+            <?php if (has_permission('users.create')): ?>
                 <a href="<?= site_url('users/create') ?>" class="btn btn-primary btn-sm">
                     <i class="fas fa-plus"></i> Add User
                 </a>
@@ -61,7 +49,6 @@
                         <th>Name</th>
                         <th>Email</th>
                         <th>Role</th>
-                        <th>Company</th>
                         <th>Status</th>
                         <th>Last Login</th>
                         <th width="120">Actions</th>
@@ -88,9 +75,6 @@
                                 </span>
                             </td>
                             <td>
-                                <?= htmlspecialchars($user->company_name ?? 'No Company') ?>
-                            </td>
-                            <td>
                                 <?php if ($user->is_active == 1): ?>
                                     <span class="badge badge-success">Active</span>
                                 <?php else: ?>
@@ -101,13 +85,13 @@
                                 <?= $user->last_login ? date('M d, Y H:i', strtotime($user->last_login)) : 'Never' ?>
                             </td>
                             <td>
-                                <?php if ($this->auth_lib->has_permission('users.edit')): ?>
+                                <?php if (has_permission('users.edit')): ?>
                                     <a href="<?= site_url('users/edit/'.$user->id) ?>" class="btn btn-sm btn-info" title="Edit">
                                         <i class="fas fa-edit"></i>
                                     </a>
                                 <?php endif; ?>
 
-                                <?php if ($this->auth_lib->has_permission('users.delete') && $user->id != $this->session->userdata('user_id') && $user->is_superadmin != 1): ?>
+                                <?php if (has_permission('users.delete') && $user->id != $this->session->userdata('user_id') && $user->is_superadmin != 1): ?>
                                     <button class="btn btn-sm btn-danger" title="Delete"
                                         onclick="Confirm.delete('Are you sure you want to delete this user?', () => {
                                             window.location.href='<?= site_url('users/delete/'.$user->id) ?>';
@@ -124,7 +108,7 @@
                     <?php endforeach; ?>
                 <?php else: ?>
                     <tr>
-                        <td colspan="7" class="text-center" style="padding: 2rem; color: #6c757d;">
+                        <td colspan="6" class="text-center" style="padding: 2rem; color: #6c757d;">
                             <i class="fas fa-users" style="font-size: 2rem; margin-bottom: 0.5rem; display: block;"></i>
                             No users found. <a href="<?= site_url('users/create') ?>">Create one</a>
                         </td>

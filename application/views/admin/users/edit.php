@@ -57,11 +57,11 @@
                 </div>
             </div>
 
-            <!-- Role & Company -->
+            <!-- Role & Status -->
             <div class="col-12 col-lg-6">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Role & Company</h3>
+                        <h3 class="card-title">Role & Status</h3>
                     </div>
                     <div class="card-body">
                         <div class="form-group">
@@ -75,28 +75,6 @@
                                 <?php endforeach; ?>
                             </select>
                         </div>
-
-                        <?php if ($is_superadmin): ?>
-                            <div class="form-group">
-                                <label class="form-label">Company</label>
-                                <select name="company_id" class="form-control">
-                                    <option value="">No Company (Super Admin)</option>
-                                    <?php foreach ($companies as $company): ?>
-                                        <option value="<?= $company->id ?>" <?= $user->company_id == $company->id ? 'selected' : '' ?>>
-                                            <?= htmlspecialchars($company->company_name) ?>
-                                        </option>
-                                    <?php endforeach; ?>
-                                </select>
-                                <small class="form-text text-muted">Leave empty for super admin users</small>
-                            </div>
-                        <?php else: ?>
-                            <input type="hidden" name="company_id" value="<?= $current_user_company_id ?>">
-                            <div class="form-group">
-                                <label class="form-label">Company</label>
-                                <input type="text" class="form-control" value="<?= htmlspecialchars($companies[0]->company_name ?? 'No Company') ?>" readonly>
-                                <small class="form-text text-muted">Users must belong to your company</small>
-                            </div>
-                        <?php endif; ?>
 
                         <div class="form-group">
                             <div class="form-check">
