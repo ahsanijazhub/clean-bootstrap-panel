@@ -35,7 +35,7 @@
     <div class="login-box">
         <div class="login-logo">
             <a href="<?= base_url() ?>">
-                <span style="color: #3c8dbc;">SOZO</span> Manager
+                <span style="color: #3c8dbc;">Admin</span> Panel
             </a>
         </div>
 
@@ -94,7 +94,7 @@
         </div>
 
         <p style="text-align: center; margin-top: 1.5rem; color: rgba(255,255,255,0.6); font-size: 0.875rem;">
-            &copy; <?= date('Y') ?> SOZO Manager. All rights reserved.
+            &copy; <?= date('Y') ?> Admin Panel. All rights reserved.
         </p>
     </div>
 

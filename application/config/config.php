@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-// $config['base_url'] = '/act/companies_sozo_car_rental/';
+// $config['base_url'] = '';
 
 $host = $_SERVER['HTTP_HOST'] ?? '';
 
@@ -31,10 +31,9 @@ if ($host === 'localhost') {
 
     $config['base_url'] = '/custom-bootstrap-admin/';
 
+} else {
 
-} else if (in_array($host, ['sozocompanies.appcoding.tech', 'sozocompanies.appcoding.tech'])) {
-
-    $config['base_url'] = 'https://sozocompanies.appcoding.tech/';
+    $config['base_url'] = 'https://' . $host . '/';
 
 }
 
@@ -93,14 +92,6 @@ $config['url_suffix'] = '';
 |
 */
 $config['language'] = 'english';
-
-/*
-|--------------------------------------------------------------------------
-| Cron Job API Key
-|--------------------------------------------------------------------------
-| Secret key for cron job authentication
-*/
-$config['cron_api_key'] = 'sozo_invoice_cron_2026';
 
 /*
 |--------------------------------------------------------------------------
@@ -348,7 +339,7 @@ $config['cache_query_string'] = FALSE;
 | https://codeigniter.com/userguide3/libraries/encryption.html
 |
 */
-$config['encryption_key'] = 'sozo_admin_2024_secret_key_32ch';
+$config['encryption_key'] = 'CHANGE_ME_32_chars_secret_key_here';
 
 /*
 |--------------------------------------------------------------------------

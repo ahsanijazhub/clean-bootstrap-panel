@@ -72,40 +72,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $active_group = 'default';
 $query_builder = TRUE;
-$username = "";
-$password = "";
-$database = "";
 
-
-if (isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST'] == 'localhost') {
-
-	$username = "root";
-	$password = "";
-	// $database = "sozo_companies";
-	$database = "managersozo";
-
-} else if (isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST'] == 'sozocompanies.appcoding.tech') {
-	$username = "u261586146_sozocompanies";
-	$password = "ActPK@111";
-	$database = "u261586146_sozocompanies";
-
-} else if (isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST'] == 'manager.sozorentacar.com.au') {
-	$username = "sozorent_user";
-	$password = "Zxcvbzz_1";
-	$database = "sozorent_manager";
-
-}
 $db['default'] = array(
-	'dsn' => '',
+	'dsn'	=> '',
 	'hostname' => 'localhost',
-
-
-
-	'username' => $username,
-	'password' => $password,
-	'database' => $database,
-
-
+	'username' => 'root',
+	'password' => '',
+	'database' => 'admin_template',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

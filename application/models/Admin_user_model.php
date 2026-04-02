@@ -26,10 +26,9 @@ class Admin_user_model extends CI_Model {
      */
     public function get_by_id($id)
     {
-        return $this->db->select('admin_users.*, roles.role_name, roles.role_slug, companies.company_name')
+        return $this->db->select('admin_users.*, roles.role_name, roles.role_slug')
                         ->from($this->table)
                         ->join('roles', 'roles.id = admin_users.role_id', 'left')
-                        ->join('companies', 'companies.id = admin_users.company_id', 'left')
                         ->where('admin_users.id', $id)
                         ->where('admin_users.deleted_at', NULL)
                         ->get()
@@ -124,15 +123,10 @@ class Admin_user_model extends CI_Model {
      */
     public function get_all($limit = 10, $offset = 0, $filters = [])
     {
-        $this->db->select('admin_users.*, roles.role_name, companies.company_name')
+        $this->db->select('admin_users.*, roles.role_name')
                  ->from($this->table)
                  ->join('roles', 'roles.id = admin_users.role_id', 'left')
-                 ->join('companies', 'companies.id = admin_users.company_id', 'left')
                  ->where('admin_users.deleted_at', NULL);
-
-        if (!empty($filters['company_id'])) {
-            $this->db->where('admin_users.company_id', $filters['company_id']);
-        }
 
         if (!empty($filters['role_id'])) {
             $this->db->where('admin_users.role_id', $filters['role_id']);
@@ -159,10 +153,6 @@ class Admin_user_model extends CI_Model {
     {
         $this->db->from($this->table)
                  ->where('deleted_at', NULL);
-
-        if (!empty($filters['company_id'])) {
-            $this->db->where('company_id', $filters['company_id']);
-        }
 
         if (!empty($filters['role_id'])) {
             $this->db->where('role_id', $filters['role_id']);

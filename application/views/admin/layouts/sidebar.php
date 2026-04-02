@@ -4,9 +4,9 @@
     <!-- Brand -->
     <div class="sidebar-brand">
         <!-- <div class="sidebar-brand-icon">S</div> -->
-        <img src="<?= base_url('assets/images/sozo-logo.webp') ?>" alt="Sozo Rent a Car : Comapanies Logo"
-            class="sidebar-brand-logo" />
-        <span class="sidebar-brand-text">SOZO Manager</span>
+        <img src="<?= base_url('assets/icons/favicon.png') ?>" alt="Admin Logo"
+            class="sidebar-brand-logo" style="max-width: 40px;" />
+        <span class="sidebar-brand-text">Admin Panel</span>
     </div>
 
     <!-- Sidebar Content -->
@@ -25,131 +25,51 @@
             </li>
 
             <!-- ================= MANAGEMENT ================= -->
-            <?php if (is_superadmin()): ?>
-                <li class="nav-header">MANAGEMENT</li>
+            <li class="nav-header">MANAGEMENT</li>
 
-                <!-- Companies -->
-                <li class="nav-item">
-                    <a href="<?= site_url('companies') ?>"
-                        class="nav-link <?= ($this->uri->segment(1) == 'companies' && $this->uri->segment(2) != 'my-company') ? 'active' : '' ?>">
-                        <span class="nav-icon"><i class="fas fa-building"></i></span>
-                        <span class="nav-link-text">Companies</span>
-                    </a>
-                </li>
-            <?php else: ?>
-                <!-- My Company (for company admins) -->
-                <li class="nav-header">MANAGEMENT</li>
-
-                <li class="nav-item">
-                    <a href="<?= site_url('companies/my-company') ?>"
-                        class="nav-link <?= ($this->uri->segment(2) == 'my-company') ? 'active' : '' ?>">
-                        <span class="nav-icon"><i class="fas fa-building"></i></span>
-                        <span class="nav-link-text">My Company</span>
-                    </a>
-                </li>
-            <?php endif; ?>
-
-            <!-- Vehicles (for both superadmin and company admin) -->
+            <!-- Users -->
+            <?php if (has_permission('users.view')): ?>
             <li class="nav-item">
-                <a href="<?= site_url('vehicles') ?>"
-                    class="nav-link <?= ($this->uri->segment(1) == 'vehicles') ? 'active' : '' ?>">
-                    <span class="nav-icon"><i class="fas fa-car"></i></span>
-                    <span class="nav-link-text">Vehicles</span>
-                </a>
-            </li>
-
-            <!-- Customers (for both superadmin and company admin) -->
-            <li class="nav-item">
-                <a href="<?= site_url('customers') ?>"
-                    class="nav-link <?= ($this->uri->segment(1) == 'customers') ? 'active' : '' ?>">
+                <a href="<?= site_url('users') ?>"
+                    class="nav-link <?= ($this->uri->segment(1) == 'users') ? 'active' : '' ?>">
                     <span class="nav-icon"><i class="fas fa-users"></i></span>
-                    <span class="nav-link-text">Customers</span>
-                </a>
-            </li>
-
-            <!-- Invoices -->
-            <li class="nav-item">
-                <a href="<?= site_url('invoices') ?>"
-                    class="nav-link <?= ($this->uri->segment(1) == 'invoices') ? 'active' : '' ?>">
-                    <span class="nav-icon"><i class="fas fa-file-invoice"></i></span>
-                    <span class="nav-link-text">Invoices</span>
-                </a>
-            </li>
-
-            <!-- Agreement Templates -->
-            <?php if (has_permission('agreement-templates.view')): ?>
-            <li class="nav-item">
-                <a href="<?= site_url('agreement-templates') ?>"
-                    class="nav-link <?= ($this->uri->segment(1) == 'agreement-templates') ? 'active' : '' ?>">
-                    <span class="nav-icon"><i class="fas fa-file-contract"></i></span>
-                    <span class="nav-link-text">Agreement Templates</span>
+                    <span class="nav-link-text">Users</span>
                 </a>
             </li>
             <?php endif; ?>
 
-            <!-- Accidents -->
-            <?php if (has_permission('accidents.view')): ?>
+            <!-- Roles -->
+            <?php if (has_permission('roles.view')): ?>
             <li class="nav-item">
-                <a href="<?= site_url('accidents') ?>"
-                    class="nav-link <?= ($this->uri->segment(1) == 'accidents') ? 'active' : '' ?>">
-                    <span class="nav-icon"><i class="fas fa-car-crash"></i></span>
-                    <span class="nav-link-text">Accidents</span>
+                <a href="<?= site_url('roles') ?>"
+                    class="nav-link <?= ($this->uri->segment(1) == 'roles') ? 'active' : '' ?>">
+                    <span class="nav-icon"><i class="fas fa-user-tag"></i></span>
+                    <span class="nav-link-text">Roles</span>
                 </a>
             </li>
             <?php endif; ?>
 
-            <!-- Rental Agreements -->
-            <?php if (has_permission('rental-agreements.view')): ?>
-            <li class="nav-item <?= ($this->uri->segment(1) == 'rental-agreements' && in_array($this->uri->segment(2), ['index','all', 'view', 'create', 'store', 'edit', 'update', 'delete'])) ? 'menu-open' : '' ?>">
-                <a href="#" class="nav-link" data-toggle="submenu">
-                    <span class="nav-icon"><i class="fas fa-file-signature"></i></span>
-                    <span class="nav-link-text">Rental Agreements</span>
-                    <span class="nav-arrow"><i class="fas fa-angle-right"></i></span>
-                    <?php
-                    // Show badge with pending review count
-                    $CI =& get_instance();
-                    $CI->load->model('Rental_agreement_model');
-                    $company_id = is_superadmin() ? null : (current_user()->company_id ?? null);
-                    $signed_count = $CI->Rental_agreement_model->count_by_status('signed', $company_id);
-                    if ($signed_count > 0):
-                    ?>
-                    <span class="nav-badge" style="background: #ffc107; color: #000;"><?= $signed_count ?></span>
-                    <?php endif; ?>
+            <!-- Permissions -->
+            <?php if (has_permission('permissions.view')): ?>
+            <li class="nav-item">
+                <a href="<?= site_url('permissions') ?>"
+                    class="nav-link <?= ($this->uri->segment(1) == 'permissions') ? 'active' : '' ?>">
+                    <span class="nav-icon"><i class="fas fa-shield-alt"></i></span>
+                    <span class="nav-link-text">Permissions</span>
                 </a>
-
-                <ul class="nav-treeview">
-
-                    <!-- View All Rental Agreements -->
-                    <li class="nav-item">
-                        <a href="<?= site_url('rental-agreements/all') ?>"
-                            class="nav-link <?= ($this->uri->segment(1) == 'rental-agreements' && ($this->uri->segment(2) == 'all' || $this->uri->segment(2) == 'index' || $this->uri->segment(2) == 'view')) ? 'active' : '' ?>">
-                            <span class="nav-icon"><i class="fas fa-list"></i></span>
-                            <span class="nav-link-text">View All Agreements</span>
-                        </a>
-                    </li>
-
-                    <!-- Create Agreement -->
-                    <?php if (has_permission('rental-agreements.create')): ?>
-                    <li class="nav-item">
-                        <a href="<?= site_url('rental-agreements/create') ?>"
-                            class="nav-link <?= ($this->uri->segment(1) == 'rental-agreements' && ($this->uri->segment(2) == 'create' || $this->uri->segment(2) == 'store')) ? 'active' : '' ?>">
-                            <span class="nav-icon"><i class="fas fa-plus-circle"></i></span>
-                            <span class="nav-link-text">Create Agreement</span>
-                        </a>
-                    </li>
-                    <?php endif; ?>
-
-                </ul>
             </li>
             <?php endif; ?>
 
-            <!-- COMMENTED OUT: Vehicle Assignment Section -->
-
-            <!-- COMMENTED OUT: User Management Section -->
-
-            <!-- COMMENTED OUT: Reports Section -->
-
-            <!-- COMMENTED OUT: Settings Section -->
+            <!-- Settings -->
+            <?php if (has_permission('settings.view')): ?>
+            <li class="nav-item">
+                <a href="<?= site_url('settings') ?>"
+                    class="nav-link <?= ($this->uri->segment(1) == 'settings') ? 'active' : '' ?>">
+                    <span class="nav-icon"><i class="fas fa-cog"></i></span>
+                    <span class="nav-link-text">Settings</span>
+                </a>
+            </li>
+            <?php endif; ?>
 
         </ul>
     </div>

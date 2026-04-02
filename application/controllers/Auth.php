@@ -20,7 +20,7 @@ class Auth extends CI_Controller {
         }
 
         $data = [
-            'title' => 'Login - SOZO Manager',
+            'title' => 'Login - Admin Panel',
             'error' => $this->session->flashdata('error'),
             'success' => $this->session->flashdata('success')
         ];
@@ -77,7 +77,6 @@ class Auth extends CI_Controller {
             'first_name' => $user->first_name,
             'last_name' => $user->last_name,
             'is_superadmin' => $user->is_superadmin,
-            'company_id' => $user->company_id,
             'role_id' => $user->role_id,
             'is_logged_in' => true
         ];

@@ -1,5 +1,5 @@
 /**
- * SOZO Admin Panel - Custom JavaScript
+ * Admin Template - Custom JavaScript
  */
 
 (function() {
