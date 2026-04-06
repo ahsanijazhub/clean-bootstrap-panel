@@ -71,6 +71,7 @@
                             <select name="role_id" class="form-control" required>
                                 <option value="">Select Role</option>
                                 <?php foreach ($roles as $role): ?>
+                                    <?php if ($role->role_slug == 'admin' && !$is_superadmin): continue; endif; ?>
                                     <option value="<?= $role->id ?>" <?= $user->role_id == $role->id ? 'selected' : '' ?>>
                                         <?= htmlspecialchars($role->role_name) ?>
                                     </option>

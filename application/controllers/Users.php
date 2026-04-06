@@ -68,7 +68,8 @@ class Users extends CI_Controller {
         $data = [
             'title' => 'Add User',
             'page_title' => 'Add New User',
-            'roles' => $roles
+            'roles' => $roles,
+            'is_superadmin' => $this->auth_lib->is_superadmin()
         ];
 
         $this->load->view('admin/layouts/header', $data);
@@ -115,6 +116,12 @@ class Users extends CI_Controller {
 
         if ($this->Admin_user_model->get_by_email($email)) {
             $this->session->set_flashdata('error', 'Email address already exists');
+            redirect('users/create');
+        }
+
+        // Only superadmin can assign admin role
+        if ($role_id == 1 && !$this->auth_lib->is_superadmin()) {
+            $this->session->set_flashdata('error', 'Only admins can create admin users');
             redirect('users/create');
         }
 
@@ -206,6 +213,12 @@ class Users extends CI_Controller {
         $existing_user = $this->Admin_user_model->get_by_email($email);
         if ($existing_user && $existing_user->id != $id) {
             $this->session->set_flashdata('error', 'Email address already exists');
+            redirect('users/edit/' . $id);
+        }
+
+        // Only superadmin can assign admin role
+        if ($role_id == 1 && !$this->auth_lib->is_superadmin()) {
+            $this->session->set_flashdata('error', 'Only admins can assign admin role');
             redirect('users/edit/' . $id);
         }
 
