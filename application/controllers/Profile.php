@@ -16,13 +16,15 @@ class Profile extends CI_Controller {
 
         $data = [
             'title' => 'My Profile',
+            'page' => 'profile/index',
             'page_title' => 'My Profile',
-            'user' => $user
+            'user' => $user,
+            'breadcrumb' => [
+                ['title' => 'Home', 'url' => site_url('dashboard')],
+                ['title' => 'My Profile', 'url' => 'profile']
+            ]
         ];
 
-        $this->load->view('admin/layouts/header', $data);
-        $this->load->view('admin/layouts/sidebar', $data);
-        $this->load->view('admin/profile/index', $data);
-        $this->load->view('admin/layouts/footer');
+        $this->load->view('admin/index', $data);
     }
 }

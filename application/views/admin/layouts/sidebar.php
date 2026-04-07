@@ -4,8 +4,8 @@
     <!-- Brand -->
     <div class="sidebar-brand">
         <!-- <div class="sidebar-brand-icon">S</div> -->
-        <img src="<?= base_url('assets/icons/favicon.png') ?>" alt="Admin Logo"
-            class="sidebar-brand-logo" style="max-width: 40px;" />
+        <img src="<?= base_url('assets/images/sozo-logo.webp') ?>" alt="Admin Logo"
+            class="sidebar-brand-logo" />
         <span class="sidebar-brand-text">Admin Panel</span>
     </div>
 

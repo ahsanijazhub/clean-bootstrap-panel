@@ -14,12 +14,14 @@ class Settings extends CI_Controller {
     {
         $data = [
             'title' => 'Settings',
-            'page_title' => 'Settings'
+            'page' => 'settings/index',
+            'page_title' => 'Settings',
+            'breadcrumb' => [
+                ['title' => 'Home', 'url' => site_url('dashboard')],
+                ['title' => 'Settings', 'url' => 'settings']
+            ]
         ];
 
-        $this->load->view('admin/layouts/header', $data);
-        $this->load->view('admin/layouts/sidebar', $data);
-        $this->load->view('admin/settings/index', $data);
-        $this->load->view('admin/layouts/footer');
+        $this->load->view('admin/index', $data);
     }
 }

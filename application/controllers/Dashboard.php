@@ -17,16 +17,13 @@ class Dashboard extends CI_Controller {
     {
         $data = [
             'title' => 'Dashboard',
+            'page' => 'dashboard/index',
             'page_title' => 'Dashboard',
             'breadcrumb' => [
                 ['title' => 'Home', 'url' => site_url('dashboard')],
                 ['title' => 'Dashboard', 'url' => '']
             ]
         ];
-
-        $this->load->view('admin/layouts/header', $data);
-        $this->load->view('admin/layouts/sidebar', $data);
-        $this->load->view('admin/dashboard/index', $data);
-        $this->load->view('admin/layouts/footer', $data);
+        $this->load->view('admin/index', $data);
     }
 }

@@ -1,7 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Permissions extends CI_Controller {
+class Permissions extends CI_Controller
+{
 
     public function __construct()
     {
@@ -27,15 +28,17 @@ class Permissions extends CI_Controller {
     {
         $data = [
             'title' => 'Permissions',
+            'page' => 'permissions/index',
             'page_title' => 'Permissions Management',
             'permissions_grouped' => $this->Permission_model->get_all_grouped(),
-            'groups' => $this->Permission_model->get_all_groups()
+            'groups' => $this->Permission_model->get_all_groups(),
+            'breadcrumb' => [
+                ['title' => 'Home', 'url' => site_url('dashboard')],
+                ['title' => 'Permissions', 'url' => 'permissions/index']
+            ]
         ];
 
-        $this->load->view('admin/layouts/header', $data);
-        $this->load->view('admin/layouts/sidebar', $data);
-        $this->load->view('admin/permissions/index', $data);
-        $this->load->view('admin/layouts/footer');
+        $this->load->view('admin/index', $data);
     }
 
     /**
@@ -45,14 +48,18 @@ class Permissions extends CI_Controller {
     {
         $data = [
             'title' => 'Add Permission',
+            'page' => 'permissions/create',
             'page_title' => 'Add New Permission',
-            'groups' => $this->Permission_model->get_all_groups()
+            'groups' => $this->Permission_model->get_all_groups(),
+            'breadcrumb' => [
+                ['title' => 'Home', 'url' => site_url('dashboard')],
+                ['title' => 'Permissions', 'url' => site_url('permissions/index')],
+                ['title' => 'Add Permission', 'url' => 'permissions/create']
+            ]
         ];
 
-        $this->load->view('admin/layouts/header', $data);
-        $this->load->view('admin/layouts/sidebar', $data);
-        $this->load->view('admin/permissions/create', $data);
-        $this->load->view('admin/layouts/footer');
+
+        $this->load->view('admin/index', $data);
     }
 
     /**
@@ -100,15 +107,18 @@ class Permissions extends CI_Controller {
 
         $data = [
             'title' => 'Edit Permission',
+            'page' => 'permissions/edit',
             'page_title' => 'Edit Permission',
             'permission' => $permission,
-            'groups' => $this->Permission_model->get_all_groups()
+            'groups' => $this->Permission_model->get_all_groups(),
+            'breadcrumb' => [
+                ['title' => 'Home', 'url' => site_url('dashboard')],
+                ['title' => 'Permissions', 'url' => site_url('permissions/index')],
+                ['title' => 'Edit Permission', 'url' => 'permissions/edit/' . $id]
+            ]
         ];
 
-        $this->load->view('admin/layouts/header', $data);
-        $this->load->view('admin/layouts/sidebar', $data);
-        $this->load->view('admin/permissions/edit', $data);
-        $this->load->view('admin/layouts/footer');
+        $this->load->view('admin/index', $data);
     }
 
     /**
@@ -182,14 +192,18 @@ class Permissions extends CI_Controller {
 
         $data = [
             'title' => 'Permission Groups',
+            'page' => 'permissions/groups',
             'page_title' => 'Permission Groups',
-            'groups' => $groups
+            'groups' => $groups,
+            'breadcrumb' => [
+                ['title' => 'Home', 'url' => site_url('dashboard')],
+                ['title' => 'Permissions', 'url' => site_url('permissions/index')],
+                ['title' => 'Permissions Groups', 'url' => site_url('permissions/groups')]
+            ]
+
         ];
 
-        $this->load->view('admin/layouts/header', $data);
-        $this->load->view('admin/layouts/sidebar', $data);
-        $this->load->view('admin/permissions/groups', $data);
-        $this->load->view('admin/layouts/footer');
+        $this->load->view('admin/index', $data);
     }
 
     /**
@@ -199,13 +213,18 @@ class Permissions extends CI_Controller {
     {
         $data = [
             'title' => 'Add Group',
-            'page_title' => 'Add Permission Group'
+            'page' => 'permissions/create_group',
+            'page_title' => 'Add Permission Group',
+            'breadcrumb' => [
+                ['title' => 'Home', 'url' => site_url('dashboard')],
+                ['title' => 'Permissions', 'url' => site_url('permissions/index')],
+                ['title' => 'Permissions Groups', 'url' => site_url('permissions/groups')],
+                ['title' => 'Add Permission Group', 'url' => 'permissions/create_group']
+            ]
         ];
 
-        $this->load->view('admin/layouts/header', $data);
-        $this->load->view('admin/layouts/sidebar', $data);
-        $this->load->view('admin/permissions/create_group', $data);
-        $this->load->view('admin/layouts/footer');
+
+        $this->load->view('admin/index', $data);
     }
 
     /**
@@ -255,14 +274,18 @@ class Permissions extends CI_Controller {
 
         $data = [
             'title' => 'Edit Group',
+            'page' => 'permissions/edit_group',
             'page_title' => 'Edit Permission Group',
-            'group' => $group
+            'group' => $group,
+            'breadcrumb' => [
+                ['title' => 'Home', 'url' => site_url('dashboard')],
+                ['title' => 'Permissions', 'url' => site_url('permissions/index')],
+                ['title' => 'Permissions Groups', 'url' => site_url('permissions/groups')],
+                ['title' => 'Edit Permission Group', 'url' => 'permissions/edit_group/' . $id]
+            ]
         ];
 
-        $this->load->view('admin/layouts/header', $data);
-        $this->load->view('admin/layouts/sidebar', $data);
-        $this->load->view('admin/permissions/edit_group', $data);
-        $this->load->view('admin/layouts/footer');
+        $this->load->view('admin/index', $data);
     }
 
     /**

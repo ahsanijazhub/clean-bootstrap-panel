@@ -1,7 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Roles extends CI_Controller {
+class Roles extends CI_Controller
+{
 
     public function __construct()
     {
@@ -33,14 +34,16 @@ class Roles extends CI_Controller {
 
         $data = [
             'title' => 'Roles',
+            'page' => 'roles/index',
             'page_title' => 'Roles Management',
-            'roles' => $roles
+            'roles' => $roles,
+            'breadcrumb' => [
+                ['title' => 'Home', 'url' => site_url('dashboard')],
+                ['title' => 'Roles', 'url' => site_url('roles/index')]
+            ]
         ];
 
-        $this->load->view('admin/layouts/header', $data);
-        $this->load->view('admin/layouts/sidebar', $data);
-        $this->load->view('admin/roles/index', $data);
-        $this->load->view('admin/layouts/footer');
+        $this->load->view('admin/index', $data);
     }
 
     /**
@@ -50,14 +53,17 @@ class Roles extends CI_Controller {
     {
         $data = [
             'title' => 'Add Role',
+            'page' => 'roles/create',
             'page_title' => 'Add New Role',
-            'permissions_grouped' => $this->Permission_model->get_all_grouped()
+            'permissions_grouped' => $this->Permission_model->get_all_grouped(),
+            'breadcrumb' => [
+                ['title' => 'Home', 'url' => site_url('dashboard')],
+                ['title' => 'Roles', 'url' => site_url('roles/index')],
+                ['title' => 'Add Role', 'url' => 'roles/create']
+            ]
         ];
 
-        $this->load->view('admin/layouts/header', $data);
-        $this->load->view('admin/layouts/sidebar', $data);
-        $this->load->view('admin/roles/create', $data);
-        $this->load->view('admin/layouts/footer');
+        $this->load->view('admin/index', $data);
     }
 
     /**
@@ -119,16 +125,19 @@ class Roles extends CI_Controller {
 
         $data = [
             'title' => 'Edit Role',
+            'page' => 'roles/edit',
             'page_title' => 'Edit Role: ' . $role->role_name,
             'role' => $role,
             'permissions_grouped' => $this->Permission_model->get_all_grouped(),
-            'role_permissions' => $this->Role_model->get_permission_ids($id)
+            'role_permissions' => $this->Role_model->get_permission_ids($id),
+            'breadcrumb' => [
+                ['title' => 'Home', 'url' => site_url('dashboard')],
+                ['title' => 'Roles', 'url' => site_url('roles/index')],
+                ['title' => 'Edit Role', 'url' => 'roles/edit/' . $id]
+            ]
         ];
 
-        $this->load->view('admin/layouts/header', $data);
-        $this->load->view('admin/layouts/sidebar', $data);
-        $this->load->view('admin/roles/edit', $data);
-        $this->load->view('admin/layouts/footer');
+        $this->load->view('admin/index', $data);
     }
 
     /**

@@ -1,7 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Users extends CI_Controller {
+class Users extends CI_Controller
+{
 
     public function __construct()
     {
@@ -39,6 +40,7 @@ class Users extends CI_Controller {
 
         $data = [
             'title' => 'Users',
+            'page' => 'users/index',
             'page_title' => 'Users Management',
             'users' => $users,
             'total_users' => $total_users,
@@ -46,13 +48,14 @@ class Users extends CI_Controller {
             'current_page' => $this->input->get('page') ?: 1,
             'total_pages' => ceil($total_users / $limit),
             'filters' => $filters,
-            'roles' => $roles
+            'roles' => $roles,
+            'breadcrumb' => [
+                ['title' => 'Home', 'url' => site_url('dashboard')],
+                ['title' => 'Users', 'url' => site_url('users/index')]
+            ]
         ];
 
-        $this->load->view('admin/layouts/header', $data);
-        $this->load->view('admin/layouts/sidebar', $data);
-        $this->load->view('admin/users/index', $data);
-        $this->load->view('admin/layouts/footer');
+        $this->load->view('admin/index', $data);
     }
 
     public function create()
@@ -67,15 +70,18 @@ class Users extends CI_Controller {
 
         $data = [
             'title' => 'Add User',
+            'page' => 'users/create',
             'page_title' => 'Add New User',
             'roles' => $roles,
-            'is_superadmin' => $this->auth_lib->is_superadmin()
+            'is_superadmin' => $this->auth_lib->is_superadmin(),
+            'breadcrumb' => [
+                ['title' => 'Home', 'url' => site_url('dashboard')],
+                ['title' => 'Users', 'url' => site_url('users/index')],
+                ['title' => 'Add User', 'url' => 'users/create']
+            ]
         ];
 
-        $this->load->view('admin/layouts/header', $data);
-        $this->load->view('admin/layouts/sidebar', $data);
-        $this->load->view('admin/users/create', $data);
-        $this->load->view('admin/layouts/footer');
+        $this->load->view('admin/index', $data);
     }
 
     public function store()
@@ -165,16 +171,19 @@ class Users extends CI_Controller {
 
         $data = [
             'title' => 'Edit User',
+            'page' => 'users/edit',
             'page_title' => 'Edit User',
             'user' => $user,
             'roles' => $roles,
-            'is_superadmin' => $this->auth_lib->is_superadmin()
+            'is_superadmin' => $this->auth_lib->is_superadmin(),
+            'breadcrumb' => [
+                ['title' => 'Home', 'url' => site_url('dashboard')],
+                ['title' => 'Users', 'url' => site_url('users/index')],
+                ['title' => 'Edit User', 'url' => 'users/edit']
+            ]
         ];
 
-        $this->load->view('admin/layouts/header', $data);
-        $this->load->view('admin/layouts/sidebar', $data);
-        $this->load->view('admin/users/edit', $data);
-        $this->load->view('admin/layouts/footer');
+        $this->load->view('admin/index', $data);
     }
 
     public function update($id)
