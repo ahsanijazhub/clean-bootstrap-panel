@@ -32,10 +32,10 @@ CREATE TABLE `admin_users` (
   KEY `fk_user_role` (`role_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Sample admin users (password: password123)
+-- Sample admin users (for admin user password: admin@123 and manager user password: manager@123)
 INSERT INTO `admin_users` (`id`, `role_id`, `first_name`, `last_name`, `email`, `password`, `phone`, `is_superadmin`, `is_active`, `created_at`) VALUES
-(1, 1, 'Admin', 'User', 'admin@example.com', '$2y$10$92IXUNpk9O360wrAOijKb0.LKfcI.Sa7Mz.dx5KpUg5J5Z3P5oSQW2', NULL, 1, 1, NOW()),
-(2, 2, 'Manager', 'User', 'manager@example.com', '$2y$10$92IXUNpk9O360wrAOijKb0.LKfcI.Sa7Mz.dx5KpUg5J5Z3P5oSQW2', '12345678', 0, 1, NOW());
+(1, 1, 'Admin', 'User', 'admin@example.com', '$2y$10$YtojJC3YpS7D2IzhNnwVuO3PeCmKRedRWXR/TOo.2KcnvPwF0RPM2', NULL, 1, 1, NOW()),
+(2, 2, 'Manager', 'User', 'manager@example.com', '$2y$10$RnNarKvLwY9f3Jt7GW.m6ur428CpXPLvxmKS0JAGPI0eU22u5.mfu', '12345678', 0, 1, NOW());
 
 -- ============================================================
 -- Table: roles
