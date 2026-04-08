@@ -4,7 +4,7 @@
     <!-- Brand -->
     <div class="sidebar-brand">
         <!-- <div class="sidebar-brand-icon">S</div> -->
-        <img src="<?= base_url('assets/images/sozo-logo.webp') ?>" alt="Admin Logo"
+        <img src="<?= base_url('assets/images/Logo-Transparent.webp') ?>" alt="Admin Logo"
             class="sidebar-brand-logo" />
         <span class="sidebar-brand-text">Admin Panel</span>
     </div>

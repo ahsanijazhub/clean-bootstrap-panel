@@ -1134,3 +1134,38 @@ body.printing-agreement .agreement-print-section .card-body {
 body.printing-agreement .no-print {
     display: none !important;
 }
+
+
+
+/* ================================================
+   STICKY FOOTER FIX
+   Footer always stays at bottom when content is short
+   ================================================ */
+
+.content-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.content {
+    flex: 1;                    /* This makes content grow and push footer down */
+    padding-bottom: 1.5rem;     /* Optional: extra space before footer */
+}
+
+.main-footer {
+    margin-top: auto;           /* Pushes footer to bottom */
+    width: 100%;
+}
+
+/* Optional: Nice shadow on footer when content is short */
+.main-footer {
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Make sure it works on mobile too */
+@media (max-width: 991.98px) {
+    .content-wrapper {
+        min-height: 100vh;
+    }
+}
